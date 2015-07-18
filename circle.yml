@@ -1,19 +1,3 @@
 machine:
-  services:
-    - docker
-
-dependencies:
-  cache_directories:
-   - mongodb-linux-x86_64-2.6.4
-  pre:
-    - if [[ ! -d mongodb-linux-x86_64-2.6.4 ]]; then wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.4.tgz && tar xvzf mongodb-linux-x86_64-2.6.4.tgz; fi
-    - sudo /etc/init.d/mongodb stop
-    - sudo cp mongodb-linux-x86_64-2.6.4/bin/* /usr/bin
-    - sudo /etc/init.d/mongodb start
-    - sudo service docker stop; sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.6.0-circleci'; sudo chmod 0755 /usr/bin/docker; sudo service docker start; true
-  override:
-    - docker build -t loopback-context-bug .
-
-test:
-  override:
-    - export HOST_IP=$(ip route | awk '/docker/ { print $NF }'); docker run -v $CIRCLE_TEST_REPORTS:/usr/src/app/testresults -e NODE_ENV=test -e MONGODB_PORT_27017_TCP_ADDR=$HOST_IP -e MOCHA_FILE=testresults/mocha.xml -e MOCHA_REPORTER=mocha-junit-reporter loopback-context-bug npm test
+  node:
+    version: 0.12.4
