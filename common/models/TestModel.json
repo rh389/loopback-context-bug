@@ -1,0 +1,14 @@
+{
+  "name": "TestModel",
+  "plural": "tests",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+  },
+  "validations": [],
+  "methods": []
+}

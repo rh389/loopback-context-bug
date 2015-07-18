@@ -1,0 +1,9 @@
+{
+  "db": {
+    "host": "the following values are overridden in datasources.local.js",
+    "port": 1,
+    "database": "db",
+    "name": "db",
+    "connector": "mongodb"
+  }
+}
